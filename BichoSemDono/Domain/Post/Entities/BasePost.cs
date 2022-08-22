@@ -13,11 +13,8 @@ public class BasePost
     public Localization Localization { get; private set; }
     public Guid? PublisherId { get; }
     public virtual BaseUser? Publisher { get; }
-    public bool IsAnonymous => Publisher == null;
+    public virtual bool IsAnonymous => Publisher == null;
     
-    public List<Support> _supports = new();
-    public IReadOnlyCollection<Support> Supports => _supports;
-
     public BasePost(string description, Localization localization, BaseUser? publisher)
     {
         Id = Guid.NewGuid();
