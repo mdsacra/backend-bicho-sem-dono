@@ -1,6 +1,5 @@
 ﻿using BichoSemDono.Domain.Post.Enums;
 using BichoSemDono.Domain.Post.ValueObjects;
-using BichoSemDono.Domain.User.Entities;
 
 namespace BichoSemDono.Domain.Post.Entities;
 
@@ -11,9 +10,10 @@ public class OwnerlessPetPost : BasePost
     public OwnerlessPetPost(
         PetSpeciesEnum petSpecies,
         string description,
-        Localization localization,
-        BaseUser? publisher) : base(description, localization, publisher)
+        Localization localization) : base(description, localization)
     {
         PetSpecies = petSpecies;
     }
+
+    public OwnerlessPetPost() { }
 }
