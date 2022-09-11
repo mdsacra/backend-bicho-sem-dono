@@ -1,4 +1,5 @@
 ﻿using BichoSemDono.Core.Infrastructure;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace BichoSemDono;
@@ -15,7 +16,9 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
-
+        
+        services.AddMediatR(typeof(Startup));
+        
         services.AddDbContext<BichoSemDonoContext>(options =>
         {
             options.UseNpgsql(Configuration.GetConnectionString("Default"));
