@@ -6,16 +6,14 @@ namespace BichoSemDono.Controllers;
 [Route("configuration")]
 public class ConfigurationController : ControllerBase
 {
-    private readonly ILogger<ConfigurationController> _logger;
     private readonly IConfiguration _configuration;
 
-    public ConfigurationController(ILogger<ConfigurationController> logger, IConfiguration configuration)
+    public ConfigurationController(IConfiguration configuration)
     {
-        _logger = logger;
         _configuration = configuration;
     }
 
-    [HttpGet()]
+    [HttpGet]
     public IActionResult GetConfig()
         => Ok(new
         {

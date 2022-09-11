@@ -1,6 +1,4 @@
 ﻿using BichoSemDono.Domain.Post.ValueObjects;
-using BichoSemDono.Domain.Shared.Entities;
-using BichoSemDono.Domain.User.Entities;
 
 namespace BichoSemDono.Domain.Post.Entities;
 
