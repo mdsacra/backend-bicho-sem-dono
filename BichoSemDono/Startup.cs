@@ -29,6 +29,9 @@ public class Startup
 
     public void Configure(IApplicationBuilder app)
     {
+        app.UseCors(builder => builder
+            .WithOrigins(Configuration.GetSection("AllowedOrigins").Get<string[]>()));
+        
         app.UseHttpsRedirection();
         
         if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")?.Contains("Development") == true)
