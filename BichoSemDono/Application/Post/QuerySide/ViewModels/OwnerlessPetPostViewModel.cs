@@ -17,7 +17,8 @@ public struct OwnerlessPetPostViewModel
         Description = ownerlessPetPost.Description;
         Localization = new LocalizationDto(
             latitude: ownerlessPetPost.Localization.Latitude, 
-            longitude: ownerlessPetPost.Localization.Longitude
+            longitude: ownerlessPetPost.Localization.Longitude,
+            address: ownerlessPetPost.Localization.Address
         );
     }
 }

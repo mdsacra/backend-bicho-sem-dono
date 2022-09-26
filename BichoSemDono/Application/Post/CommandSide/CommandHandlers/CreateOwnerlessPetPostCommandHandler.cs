@@ -22,7 +22,8 @@ public class CreateOwnerlessPetPostCommandHandler : IRequestHandler<CreateOwnerl
             description: command.Description ?? string.Empty,
             localization: new Localization(
                 latitude: command.Localization.Latitude,
-                longitude: command.Localization.Longitude
+                longitude: command.Localization.Longitude,
+                address: command.Localization.Address
             )
         );
 
