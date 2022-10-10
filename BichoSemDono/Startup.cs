@@ -30,7 +30,10 @@ public class Startup
     public void Configure(IApplicationBuilder app)
     {
         app.UseCors(builder => builder
-            .WithOrigins(Configuration.GetSection("AllowedOrigins").Get<string[]>()));
+            .WithOrigins(Configuration.GetSection("AllowedOrigins").Get<string[]>())
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials());
         
         app.UseHttpsRedirection();
         
