@@ -17,5 +17,18 @@ public class ListOwnerlessPetPostsQueryHandler : IRequestHandler<ListOwnerlessPe
     public async Task<IEnumerable<OwnerlessPetPostViewModel>> Handle(
         ListOwnerlessPetPostsQuery request,
         CancellationToken cancellationToken)
-        => _context.OwnerlessPetPosts.Select(opp => new OwnerlessPetPostViewModel(opp));
+    {
+        var longitude = request.Longitude;
+        var latitude = request.Latitude;
+        var eastLimitLongitude = longitude + 0.2;
+        var westLimitLongitude = longitude - 0.2;
+        var northLimitLatitude = latitude + 0.2;
+        var southLimitLatitude = latitude - 0.2;
+
+        return _context.OwnerlessPetPosts
+            .Where(opp =>
+                (opp.Localization.Longitude <= eastLimitLongitude && opp.Localization.Longitude >= westLimitLongitude) &&
+                (opp.Localization.Latitude <= northLimitLatitude && opp.Localization.Latitude >= southLimitLatitude))
+            .Select(opp => new OwnerlessPetPostViewModel(opp));
+    }
 }
