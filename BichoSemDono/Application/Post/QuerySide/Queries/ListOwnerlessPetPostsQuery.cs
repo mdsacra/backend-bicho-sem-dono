@@ -5,10 +5,10 @@ namespace BichoSemDono.Application.Post.QuerySide.Queries;
 
 public struct ListOwnerlessPetPostsQuery : IRequest<IEnumerable<OwnerlessPetPostViewModel>>
 {
-    public string Longitude { get; init; }
-    public string Latitude { get; init; }
+    public double Longitude { get; init; }
+    public double Latitude { get; init; }
 
-    public ListOwnerlessPetPostsQuery(string longitude, string latitude)
+    public ListOwnerlessPetPostsQuery(double longitude, double latitude)
     {
         Longitude = longitude;
         Latitude = latitude;

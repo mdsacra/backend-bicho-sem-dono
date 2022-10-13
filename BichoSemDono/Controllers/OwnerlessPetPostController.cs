@@ -18,8 +18,8 @@ public class OwnerlessPetPostController : ControllerBase
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Guid>>> ListOwnerlesPetPosts(
-        [FromQuery] string longitude, 
-        [FromQuery] string latitude)
+        [FromQuery] double longitude, 
+        [FromQuery] double latitude)
         => Ok(await _mediator.Send(new ListOwnerlessPetPostsQuery(longitude, latitude)));
     
     [HttpPost]
