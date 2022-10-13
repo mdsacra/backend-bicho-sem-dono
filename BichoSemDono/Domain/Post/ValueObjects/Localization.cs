@@ -4,11 +4,11 @@ namespace BichoSemDono.Domain.Post.ValueObjects;
 
 public class Localization : ValueObject<Localization>
 {
-    public string Latitude { get; private set; }
-    public string Longitude { get; private set; }
+    public double Latitude { get; private set; }
+    public double Longitude { get; private set; }
     public string Address { get; private set; }
 
-    public Localization(string latitude, string longitude, string address)
+    public Localization(double latitude, double longitude, string address)
     {
         Latitude = latitude;
         Longitude = longitude;
