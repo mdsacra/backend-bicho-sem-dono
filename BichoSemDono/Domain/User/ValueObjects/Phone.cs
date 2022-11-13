@@ -8,6 +8,8 @@ public class Phone : ValueObject<Phone>
     public string Number { get; }
     public bool IsWhatsapp { get; }
 
+    public string Full => Ddd + Number;
+
     public Phone(string ddd, string number, bool isWhatsapp)
     {
         Ddd = ddd;
