@@ -1,4 +1,6 @@
-﻿using BichoSemDono.Core.Infrastructure;
+﻿using System.Text;
+using BichoSemDono.Core.Authentication;
+using BichoSemDono.Core.Infrastructure.ContextConfiguration;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,5 +1,5 @@
 ﻿using BichoSemDono.Application.Post.CommandSide.Commands;
-using BichoSemDono.Core.Infrastructure;
+using BichoSemDono.Core.Infrastructure.ContextConfiguration;
 using BichoSemDono.Domain.Post.Entities;
 using BichoSemDono.Domain.Post.ValueObjects;
 using MediatR;

@@ -1,6 +1,6 @@
 ﻿using BichoSemDono.Application.Post.QuerySide.Queries;
 using BichoSemDono.Application.Post.QuerySide.ViewModels;
-using BichoSemDono.Core.Infrastructure;
+using BichoSemDono.Core.Infrastructure.ContextConfiguration;
 using MediatR;
 
 namespace BichoSemDono.Application.Post.QuerySide.QueryHandlers;
