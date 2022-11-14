@@ -6,21 +6,18 @@ public class Phone : ValueObject<Phone>
 {
     public string Ddd { get; }
     public string Number { get; }
-    public bool IsWhatsapp { get; }
 
     public string Full => Ddd + Number;
 
-    public Phone(string ddd, string number, bool isWhatsapp)
+    public Phone(string fullNumber)
     {
-        Ddd = ddd;
-        Number = number;
-        IsWhatsapp = isWhatsapp;
+        Ddd = fullNumber[..2];
+        Number = fullNumber[2..];
     }
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Ddd;
         yield return Number;
-        yield return IsWhatsapp;
     }
 }

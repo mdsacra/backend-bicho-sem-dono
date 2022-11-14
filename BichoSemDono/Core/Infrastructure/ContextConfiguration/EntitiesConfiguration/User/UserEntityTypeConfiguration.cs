@@ -49,10 +49,6 @@ public class UserEntityTypeConfiguration : IEntityTypeConfiguration<BaseUser>
                 .Property(p => p.Number)
                 .IsRequired()
                 .HasMaxLength(10);
-
-            phone
-                .Property(p => p.IsWhatsapp)
-                .HasDefaultValue(false);
         });
         
         builder
