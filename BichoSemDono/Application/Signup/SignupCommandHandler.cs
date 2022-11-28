@@ -1,6 +1,5 @@
 using BichoSemDono.Core.Infrastructure.ContextConfiguration;
 using BichoSemDono.Domain.User.Entities;
-using BichoSemDono.Domain.User.ValueObjects;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +17,7 @@ public class SignupCommandHandler : IRequestHandler<SignupCommand, Guid>
     public async Task<Guid> Handle(SignupCommand request, CancellationToken cancellationToken)
     {
         var userAlreadyExists = await _context.Users.AnyAsync(u =>
-                (u.Email != null && u.Email.Address.Equals(request.EmailAddress)) ||
+                (u.Email != null && u.Email.Equals(request.EmailAddress)) ||
                 (u.Phone != null && u.Phone.Equals(request.Phone)),
             cancellationToken: cancellationToken);
 
@@ -30,8 +29,8 @@ public class SignupCommandHandler : IRequestHandler<SignupCommand, Guid>
             petsQuantity: request.PetsQuantity,
             password: request.Password,
             profile: request.UserProfile,
-            email: request.EmailAddress != null ? new Email(request.EmailAddress) : null,
-            phone: request.Phone != null ? new Phone(request.Phone) : null
+            email: request.EmailAddress,
+            phone: request.Phone
         );
 
         await _context.Users.AddAsync(user, cancellationToken);

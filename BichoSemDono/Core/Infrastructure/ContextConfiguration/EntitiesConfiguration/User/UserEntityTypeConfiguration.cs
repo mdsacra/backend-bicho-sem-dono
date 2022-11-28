@@ -30,31 +30,13 @@ public class UserEntityTypeConfiguration : IEntityTypeConfiguration<BaseUser>
         builder
             .Property(u => u.Profile)
             .IsRequired();
-        
-        builder.OwnsOne(u => u.Email, email =>
-        {
-            email
-                .Property(e => e.Address)
-                .HasMaxLength(200);
-        });
-        
-        builder.OwnsOne(u => u.Phone, phone =>
-        {
-            phone
-                .Property(p => p.Ddd)
-                .IsRequired()
-                .HasMaxLength(3);
 
-            phone
-                .Property(p => p.Number)
-                .IsRequired()
-                .HasMaxLength(10);
-        });
-        
-        builder
-            .HasMany(u => u.BasePosts)
-            .WithOne();
-        
+        builder.Property(e => e.Email)
+            .HasMaxLength(200);
+
+        builder.Property(e => e.Phone)
+            .HasMaxLength(13);
+
         builder
             .Property(u => u.CreatedAt)
             .ValueGeneratedNever();

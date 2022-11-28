@@ -20,8 +20,8 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, ActionResult<st
     public async Task<ActionResult<string>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u =>
-            (u.Email != null && u.Email.Address.ToLower().Equals(request.UserIdentification)) ||
-            (u.Phone != null && u.Phone.Full.Equals(request.UserIdentification)), cancellationToken: cancellationToken);
+            (u.Email != null && u.Email.ToLower().Equals(request.UserIdentification)) ||
+            (u.Phone != null && u.Phone.Equals(request.UserIdentification)), cancellationToken: cancellationToken);
 
         if (user is null)
             return new NotFoundResult();
