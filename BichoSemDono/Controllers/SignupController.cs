@@ -1,9 +1,13 @@
 using BichoSemDono.Application.Signup;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BichoSemDono.Controllers;
 
+[ApiController]
+[Route("api/signup")]
+[AllowAnonymous]
 public class SignupController : ControllerBase
 {
     private readonly IMediator _mediator;
