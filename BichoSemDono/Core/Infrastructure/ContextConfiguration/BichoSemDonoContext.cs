@@ -15,6 +15,13 @@ public class BichoSemDonoContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        // modelBuilder.Entity<BasePost>()
+        //     .HasKey(p => p.Id);
+        // modelBuilder.Entity<BasePost>()
+        //     .Property(p => p.Id)
+        //     .ValueGeneratedNever();
+        
         base.OnModelCreating(modelBuilder);
     }
 }

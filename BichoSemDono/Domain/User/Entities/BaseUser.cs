@@ -1,28 +1,25 @@
-﻿using BichoSemDono.Domain.Post.Entities;
-using BichoSemDono.Domain.Shared.Entities;
-using BichoSemDono.Domain.User.Enums;
-using BichoSemDono.Domain.User.ValueObjects;
+﻿using BichoSemDono.Domain.User.Enums;
 
 namespace BichoSemDono.Domain.User.Entities;
 
 public class BaseUser
 {
     public Guid Id { get; }
-    public string Name { get; private set; }
+    public string Name { get; private set; } = null!;
     public int PetsQuantity { get; private set; }
-    public string Password { get; private set; }
+    public string Password { get; private set; } = null!;
     public UserProfile Profile { get; private set; }
-    public Email? Email { get; private set; }
-    public Phone? Phone { get; private set; }
+    public string? Email { get; private set; }
+    public string? Phone { get; private set; }
     
     // private List<Support> _supports = new();
     // public IReadOnlyCollection<Support> Supports => _supports;
 
-    private List<BasePost> _posts = new();
-    public IReadOnlyCollection<BasePost> BasePosts => _posts;
+    // private List<BasePost> _posts = new();
+    // public IReadOnlyCollection<BasePost> BasePosts => _posts;
     public DateTime CreatedAt { get; }
 
-    public BaseUser(string name, int petsQuantity, string password, UserProfile profile, Email? email, Phone? phone)
+    public BaseUser(string name, int petsQuantity, string password, UserProfile profile, string? email, string? phone)
     {
         Id = Guid.NewGuid();
         Name = name;
@@ -33,4 +30,6 @@ public class BaseUser
         Phone = phone;
         CreatedAt = DateTime.UtcNow;
     }
+
+    public BaseUser() { }
 }
