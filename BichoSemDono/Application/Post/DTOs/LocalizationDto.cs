@@ -1,6 +1,4 @@
-﻿using System.Net.Sockets;
-
-namespace BichoSemDono.Application.Post.DTOs;
+﻿namespace BichoSemDono.Application.Post.DTOs;
 
 public struct LocalizationDto
 {

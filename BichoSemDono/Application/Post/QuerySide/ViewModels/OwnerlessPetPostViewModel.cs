@@ -1,7 +1,6 @@
 ﻿using BichoSemDono.Application.Post.DTOs;
 using BichoSemDono.Domain.Post.Entities;
 using BichoSemDono.Domain.Post.Enums;
-using BichoSemDono.Domain.Post.ValueObjects;
 
 namespace BichoSemDono.Application.Post.QuerySide.ViewModels;
 

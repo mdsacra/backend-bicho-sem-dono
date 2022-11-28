@@ -1,4 +1,4 @@
-using BichoSemDono.Core.Infrastructure;
+using BichoSemDono.Core.Infrastructure.ContextConfiguration;
 using Microsoft.EntityFrameworkCore;
 
 namespace BichoSemDono;

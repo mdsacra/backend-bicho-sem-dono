@@ -1,6 +1,10 @@
-﻿using BichoSemDono.Core.Infrastructure;
+﻿using System.Text;
+using BichoSemDono.Core.Authentication;
+using BichoSemDono.Core.Infrastructure.ContextConfiguration;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BichoSemDono;
 
@@ -16,6 +20,22 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
+        
+        var key = Encoding.ASCII.GetBytes(Settings.Secret);
+        services.AddAuthentication(o =>
+        {
+            o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(o =>
+        {
+            o.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false
+            };
+        });
         
         services.AddMediatR(typeof(Startup));
         
@@ -43,8 +63,10 @@ public class Startup
             app.UseSwaggerUI();
         }
 
-        app.UseRouting();
         
+        app.UseRouting();
+
+        app.UseAuthentication();
         app.UseAuthorization();
         
         app.UseEndpoints(endpoints 

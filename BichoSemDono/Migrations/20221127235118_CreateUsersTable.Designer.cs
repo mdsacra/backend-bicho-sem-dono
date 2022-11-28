@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BichoSemDono.Migrations
 {
     [DbContext(typeof(BichoSemDonoContext))]
-    [Migration("20220822020340_CreateOwnerlessPetPostsTable")]
-    partial class CreateOwnerlessPetPostsTable
+    [Migration("20221127235118_CreateUsersTable")]
+    partial class CreateUsersTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,42 @@ namespace BichoSemDono.Migrations
                     b.ToTable("OwnerlessPetPosts");
                 });
 
+            modelBuilder.Entity("BichoSemDono.Domain.User.Entities.BaseUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("PetsQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)");
+
+                    b.Property<int>("Profile")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("BichoSemDono.Domain.Post.Entities.OwnerlessPetPost", b =>
                 {
                     b.OwnsOne("BichoSemDono.Domain.Post.ValueObjects.Localization", "Localization", b1 =>
@@ -55,13 +91,15 @@ namespace BichoSemDono.Migrations
                             b1.Property<Guid>("OwnerlessPetPostId")
                                 .HasColumnType("uuid");
 
-                            b1.Property<string>("Latitude")
+                            b1.Property<string>("Address")
                                 .IsRequired()
                                 .HasColumnType("text");
 
-                            b1.Property<string>("Longitude")
-                                .IsRequired()
-                                .HasColumnType("text");
+                            b1.Property<double>("Latitude")
+                                .HasColumnType("double precision");
+
+                            b1.Property<double>("Longitude")
+                                .HasColumnType("double precision");
 
                             b1.HasKey("OwnerlessPetPostId");
 

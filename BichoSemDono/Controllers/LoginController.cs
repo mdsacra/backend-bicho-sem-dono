@@ -1,0 +1,31 @@
+using BichoSemDono.Application.Login;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace BichoSemDono.Controllers;
+
+[ApiController]
+[Route("api/login")]
+public class LoginController : ControllerBase
+{
+    private readonly IMediator _mediator;
+
+    public LoginController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<string>> Login([FromBody] LoginCommand loginCommand)
+    {
+        var result = await _mediator.Send(loginCommand);
+
+        if (result.Contains("NotFound"))
+            return NotFound(result);
+
+        if (result.Contains("invalidData"))
+            return Unauthorized(result);
+        
+        return Ok(result);
+    }
+}
