@@ -17,5 +17,15 @@ public class LoginController : ControllerBase
 
     [HttpPost]
     public async Task<ActionResult<string>> Login([FromBody] LoginCommand loginCommand)
-        => Ok(await _mediator.Send(loginCommand));
+    {
+        var result = await _mediator.Send(loginCommand);
+
+        if (result.Contains("NotFound"))
+            return NotFound(result);
+
+        if (result.Contains("invalidData"))
+            return Unauthorized(result);
+        
+        return Ok(result);
+    }
 }
