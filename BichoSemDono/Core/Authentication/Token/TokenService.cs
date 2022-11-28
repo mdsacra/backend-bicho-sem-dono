@@ -6,9 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BichoSemDono.Core.Authentication.Token;
 
-public class TokenService
+public static class TokenService
 {
-    public string GenerateToken(BaseUser user)
+    public static string GenerateToken(BaseUser user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(Settings.Secret);
