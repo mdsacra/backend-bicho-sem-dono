@@ -34,8 +34,11 @@ public class Startup
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials());
-        
-        app.UseHttpsRedirection();
+
+        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")?.Contains("Production") == true)
+        {
+            app.UseHttpsRedirection();
+        }
         
         if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")?.Contains("Development") == true)
         {
